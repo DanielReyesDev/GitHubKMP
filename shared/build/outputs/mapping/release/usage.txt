@@ -1,0 +1,3 @@
+com.skylabs.AndroidKt
+com.skylabs.Greeting
+com.skylabs.githubkmp.BuildConfig
