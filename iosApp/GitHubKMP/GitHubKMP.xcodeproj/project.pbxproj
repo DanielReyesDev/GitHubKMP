@@ -90,6 +90,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 92F778D9227FA42D00FCCFF5 /* Build configuration list for PBXNativeTarget "GitHubKMP" */;
 			buildPhases = (
+				92F778E0227FA6B700FCCFF5 /* ShellScript */,
 				92F778C3227FA42B00FCCFF5 /* Sources */,
 				92F778C4227FA42B00FCCFF5 /* Frameworks */,
 				92F778C5227FA42B00FCCFF5 /* Resources */,
@@ -149,6 +150,26 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		92F778E0227FA6B700FCCFF5 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "cd \"$SRCROOT/../../shared/build/xcode-frameworks\"\n./gradlew :shared:build -PXCODE_CONFIGURATION=${CONFIGURATION}\n";
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		92F778C3227FA42B00FCCFF5 /* Sources */ = {
@@ -305,6 +326,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = AVF4FWDUBC;
 				ENABLE_BITCODE = NO;
+				FRAMEWORK_SEARCH_PATHS = "$(SRCROOT)/../../shared/build/xcode-frameworks";
 				INFOPLIST_FILE = GitHubKMP/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -324,6 +346,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = AVF4FWDUBC;
 				ENABLE_BITCODE = NO;
+				FRAMEWORK_SEARCH_PATHS = "$(SRCROOT)/../../shared/build/xcode-frameworks";
 				INFOPLIST_FILE = GitHubKMP/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",

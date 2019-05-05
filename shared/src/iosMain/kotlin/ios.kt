@@ -3,5 +3,5 @@ package com.skylabs
 import platform.UIKit.UIDevice
 
 actual fun platformName(): String {
-    return "${UIDevice.currentDevice.systemName()}"
+    return "${UIDevice.currentDevice.systemName()} ${UIDevice.currentDevice.systemVersion()}"
 }
