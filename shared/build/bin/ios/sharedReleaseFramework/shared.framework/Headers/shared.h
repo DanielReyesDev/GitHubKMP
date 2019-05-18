@@ -1,6 +1,8 @@
 #import <Foundation/Foundation.h>
 
-@class SharedGreeting;
+@class SharedGreeting, SharedUpdateProblem, SharedKotlinThrowable, SharedKotlinArray, SharedGithubApi, SharedCoroutinePresenter;
+
+@protocol SharedBaseView, SharedKotlinx_coroutines_core_nativeCoroutineScope, SharedKotlinCoroutineContext, SharedKotlinIterator, SharedKotlinCoroutineContextElement, SharedKotlinCoroutineContextKey;
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -147,10 +149,98 @@ __attribute__((swift_name("Greeting")))
 - (NSString *)greeting __attribute__((swift_name("greeting()")));
 @end;
 
+__attribute__((swift_name("KotlinThrowable")))
+@interface SharedKotlinThrowable : KotlinBase
+- (instancetype)initWithMessage:(NSString * _Nullable)message __attribute__((swift_name("init(message:)"))) __attribute__((objc_designated_initializer));
+- (instancetype)initWithCause:(SharedKotlinThrowable * _Nullable)cause __attribute__((swift_name("init(cause:)"))) __attribute__((objc_designated_initializer));
+- (instancetype)init __attribute__((swift_name("init()"))) __attribute__((objc_designated_initializer));
++ (instancetype)new __attribute__((availability(swift, unavailable, message="use object initializers instead")));
+- (instancetype)initWithMessage:(NSString * _Nullable)message cause:(SharedKotlinThrowable * _Nullable)cause __attribute__((swift_name("init(message:cause:)"))) __attribute__((objc_designated_initializer));
+- (SharedKotlinArray *)getStackTrace __attribute__((swift_name("getStackTrace()")));
+- (void)printStackTrace __attribute__((swift_name("printStackTrace()")));
+@property (readonly) SharedKotlinThrowable * _Nullable cause;
+@property (readonly) NSString * _Nullable message;
+@end;
+
+__attribute__((objc_subclassing_restricted))
+__attribute__((swift_name("UpdateProblem")))
+@interface SharedUpdateProblem : SharedKotlinThrowable
+- (instancetype)init __attribute__((swift_name("init()"))) __attribute__((objc_designated_initializer));
++ (instancetype)new __attribute__((availability(swift, unavailable, message="use object initializers instead")));
+- (instancetype)initWithMessage:(NSString * _Nullable)message __attribute__((swift_name("init(message:)"))) __attribute__((objc_designated_initializer)) __attribute__((unavailable));
+- (instancetype)initWithCause:(SharedKotlinThrowable * _Nullable)cause __attribute__((swift_name("init(cause:)"))) __attribute__((objc_designated_initializer)) __attribute__((unavailable));
+- (instancetype)initWithMessage:(NSString * _Nullable)message cause:(SharedKotlinThrowable * _Nullable)cause __attribute__((swift_name("init(message:cause:)"))) __attribute__((objc_designated_initializer)) __attribute__((unavailable));
+@end;
+
+__attribute__((objc_subclassing_restricted))
+__attribute__((swift_name("GithubApi")))
+@interface SharedGithubApi : KotlinBase
+- (instancetype)init __attribute__((swift_name("init()"))) __attribute__((objc_designated_initializer));
++ (instancetype)new __attribute__((availability(swift, unavailable, message="use object initializers instead")));
+@end;
+
+__attribute__((swift_name("BaseView")))
+@protocol SharedBaseView
+@required
+- (void)showErrorError:(SharedKotlinThrowable *)error __attribute__((swift_name("showError(error:)")));
+@end;
+
+__attribute__((swift_name("Kotlinx_coroutines_core_nativeCoroutineScope")))
+@protocol SharedKotlinx_coroutines_core_nativeCoroutineScope
+@required
+@property (readonly) id<SharedKotlinCoroutineContext> coroutineContext;
+@end;
+
+__attribute__((swift_name("CoroutinePresenter")))
+@interface SharedCoroutinePresenter : KotlinBase <SharedKotlinx_coroutines_core_nativeCoroutineScope>
+- (instancetype)initWithPresenterContext:(id<SharedKotlinCoroutineContext>)presenterContext baseView:(id<SharedBaseView>)baseView __attribute__((swift_name("init(presenterContext:baseView:)"))) __attribute__((objc_designated_initializer));
+- (void)onCreate __attribute__((swift_name("onCreate()")));
+- (void)onDestroy __attribute__((swift_name("onDestroy()")));
+@end;
+
 __attribute__((objc_subclassing_restricted))
 __attribute__((swift_name("IosKt")))
 @interface SharedIosKt : KotlinBase
 + (NSString *)platformName __attribute__((swift_name("platformName()")));
+@end;
+
+__attribute__((objc_subclassing_restricted))
+__attribute__((swift_name("KotlinArray")))
+@interface SharedKotlinArray : KotlinBase
++ (instancetype)arrayWithSize:(int32_t)size init:(id _Nullable (^)(SharedInt *))init __attribute__((swift_name("init(size:init:)")));
++ (instancetype)alloc __attribute__((unavailable));
++ (instancetype)allocWithZone:(struct _NSZone *)zone __attribute__((unavailable));
+- (id _Nullable)getIndex:(int32_t)index __attribute__((swift_name("get(index:)")));
+- (id<SharedKotlinIterator>)iterator __attribute__((swift_name("iterator()")));
+- (void)setIndex:(int32_t)index value:(id _Nullable)value __attribute__((swift_name("set(index:value:)")));
+@property (readonly) int32_t size;
+@end;
+
+__attribute__((swift_name("KotlinCoroutineContext")))
+@protocol SharedKotlinCoroutineContext
+@required
+- (id _Nullable)foldInitial:(id _Nullable)initial operation:(id _Nullable (^)(id _Nullable, id<SharedKotlinCoroutineContextElement>))operation __attribute__((swift_name("fold(initial:operation:)")));
+- (id<SharedKotlinCoroutineContextElement> _Nullable)getKey:(id<SharedKotlinCoroutineContextKey>)key __attribute__((swift_name("get(key:)")));
+- (id<SharedKotlinCoroutineContext>)minusKeyKey:(id<SharedKotlinCoroutineContextKey>)key __attribute__((swift_name("minusKey(key:)")));
+- (id<SharedKotlinCoroutineContext>)plusContext:(id<SharedKotlinCoroutineContext>)context __attribute__((swift_name("plus(context:)")));
+@end;
+
+__attribute__((swift_name("KotlinIterator")))
+@protocol SharedKotlinIterator
+@required
+- (BOOL)hasNext __attribute__((swift_name("hasNext()")));
+- (id _Nullable)next __attribute__((swift_name("next()")));
+@end;
+
+__attribute__((swift_name("KotlinCoroutineContextElement")))
+@protocol SharedKotlinCoroutineContextElement <SharedKotlinCoroutineContext>
+@required
+@property (readonly) id<SharedKotlinCoroutineContextKey> key;
+@end;
+
+__attribute__((swift_name("KotlinCoroutineContextKey")))
+@protocol SharedKotlinCoroutineContextKey
+@required
 @end;
 
 NS_ASSUME_NONNULL_END

@@ -2,11 +2,23 @@
 
 buildscript {
     ext.kotlin_version = '1.3.20'
+    // Kotlin/Native
     ext.kotlin_native_version = '1.3.21'
+    // Networking
+    ext.ktor_version = '1.1.2'
+    // Coroutines
+    ext.coroutines_version = '1.0.1'
+    ext.kotlinx_coroutines_version = '1.1.1'
+
     repositories {
         maven { url 'https://plugins.gradle.org/m2' }
         maven { url 'http://dl.bintray.com/kotlin/kotlin-eap' }
+        // Kotlin/Native
         maven { url 'https://dl.bintray.com/jetbrains/kotlin-native-dependencies' }
+        // Networking
+        maven { url 'https://dl.bintray.com/kotlin/ktor' }
+        // Coroutines
+        maven { url 'https://kotlin.bintray.com/kotlinx' }
         google()
         jcenter()
         
@@ -22,6 +34,9 @@ buildscript {
 
 allprojects {
     repositories {
+        maven { url 'https://kotlin.bintray.com/kotlinx' }
+        maven { url 'https://kotlin.bintray.com/ktor' }
+
         google()
         jcenter()
         

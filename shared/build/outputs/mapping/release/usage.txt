@@ -1,3 +1,11 @@
 com.skylabs.AndroidKt
+com.skylabs.ApplicationDispatcherKt
 com.skylabs.Greeting
+com.skylabs.api.GithubApi
+com.skylabs.api.GithubApi$getMembers$$inlined$get$1
+com.skylabs.api.GithubApi$getMembers$1
+com.skylabs.api.UpdateProblem
 com.skylabs.githubkmp.BuildConfig
+com.skylabs.presentation.BaseView
+com.skylabs.presentation.CoroutinePresenter
+com.skylabs.presentation.CoroutinePresenter$$special$$inlined$CoroutineExceptionHandler$1

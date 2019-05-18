@@ -1,2 +1,5 @@
+// Feature Preview
+enableFeaturePreview('GRADLE_METADATA')
+
 include ':shared'
 include ':androidApp'
