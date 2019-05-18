@@ -6,6 +6,14 @@ com.skylabs.api.GithubApi$getMembers$$inlined$get$1
 com.skylabs.api.GithubApi$getMembers$1
 com.skylabs.api.UpdateProblem
 com.skylabs.githubkmp.BuildConfig
+com.skylabs.model.MembersDataRepository
+com.skylabs.model.MembersDataRepository$update$1
 com.skylabs.presentation.BaseView
 com.skylabs.presentation.CoroutinePresenter
 com.skylabs.presentation.CoroutinePresenter$$special$$inlined$CoroutineExceptionHandler$1
+com.skylabs.presentation.DataRepository
+com.skylabs.presentation.MembersPresenter
+com.skylabs.presentation.MembersPresenter$onRefreshListener$1
+com.skylabs.presentation.MembersPresenter$updateData$1
+com.skylabs.presentation.MembersPresenter$updateData$2
+com.skylabs.presentation.MembersView

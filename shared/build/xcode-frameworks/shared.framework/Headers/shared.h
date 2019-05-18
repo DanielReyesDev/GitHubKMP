@@ -1,8 +1,8 @@
 #import <Foundation/Foundation.h>
 
-@class SharedGreeting, SharedUpdateProblem, SharedKotlinThrowable, SharedKotlinArray, SharedGithubApi, SharedCoroutinePresenter;
+@class SharedGreeting, SharedMembersDataRepository, SharedKotlinUnit, SharedGithubApi, SharedUpdateProblem, SharedKotlinThrowable, SharedKotlinArray, SharedCoroutinePresenter, SharedMembersPresenter;
 
-@protocol SharedBaseView, SharedKotlinx_coroutines_core_nativeCoroutineScope, SharedKotlinCoroutineContext, SharedKotlinIterator, SharedKotlinCoroutineContextElement, SharedKotlinCoroutineContextKey;
+@protocol SharedDataRepository, SharedBaseView, SharedKotlinx_coroutines_core_nativeCoroutineScope, SharedKotlinCoroutineContext, SharedMembersView, SharedKotlinIterator, SharedKotlinCoroutineContextElement, SharedKotlinCoroutineContextKey;
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -149,6 +149,20 @@ __attribute__((swift_name("Greeting")))
 - (NSString *)greeting __attribute__((swift_name("greeting()")));
 @end;
 
+__attribute__((swift_name("DataRepository")))
+@protocol SharedDataRepository
+@required
+@property (readonly) NSString * _Nullable members;
+@property NSArray<SharedKotlinUnit *(^)(void)> *onRefreshListeners;
+@end;
+
+__attribute__((objc_subclassing_restricted))
+__attribute__((swift_name("MembersDataRepository")))
+@interface SharedMembersDataRepository : KotlinBase <SharedDataRepository>
+- (instancetype)initWithApi:(SharedGithubApi *)api __attribute__((swift_name("init(api:)"))) __attribute__((objc_designated_initializer));
+@property NSString * _Nullable members;
+@end;
+
 __attribute__((swift_name("KotlinThrowable")))
 @interface SharedKotlinThrowable : KotlinBase
 - (instancetype)initWithMessage:(NSString * _Nullable)message __attribute__((swift_name("init(message:)"))) __attribute__((objc_designated_initializer));
@@ -199,9 +213,31 @@ __attribute__((swift_name("CoroutinePresenter")))
 @end;
 
 __attribute__((objc_subclassing_restricted))
+__attribute__((swift_name("MembersPresenter")))
+@interface SharedMembersPresenter : SharedCoroutinePresenter
+- (instancetype)initWithView:(id<SharedMembersView>)view repository:(id<SharedDataRepository>)repository __attribute__((swift_name("init(view:repository:)"))) __attribute__((objc_designated_initializer));
+- (instancetype)initWithPresenterContext:(id<SharedKotlinCoroutineContext>)presenterContext baseView:(id<SharedBaseView>)baseView __attribute__((swift_name("init(presenterContext:baseView:)"))) __attribute__((objc_designated_initializer)) __attribute__((unavailable));
+@end;
+
+__attribute__((swift_name("MembersView")))
+@protocol SharedMembersView <SharedBaseView>
+@required
+- (void)onUpdateMembers:(NSString *)members __attribute__((swift_name("onUpdate(members:)")));
+@property BOOL isUpdating;
+@end;
+
+__attribute__((objc_subclassing_restricted))
 __attribute__((swift_name("IosKt")))
 @interface SharedIosKt : KotlinBase
 + (NSString *)platformName __attribute__((swift_name("platformName()")));
+@end;
+
+__attribute__((objc_subclassing_restricted))
+__attribute__((swift_name("KotlinUnit")))
+@interface SharedKotlinUnit : KotlinBase
++ (instancetype)alloc __attribute__((unavailable));
++ (instancetype)allocWithZone:(struct _NSZone *)zone __attribute__((unavailable));
++ (instancetype)unit __attribute__((swift_name("init()")));
 @end;
 
 __attribute__((objc_subclassing_restricted))
