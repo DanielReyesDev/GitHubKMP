@@ -1,2 +1,0 @@
-com.skylabs.githubkmp.R -> com.skylabs.githubkmp.R:
-    void <init>() -> <init>
