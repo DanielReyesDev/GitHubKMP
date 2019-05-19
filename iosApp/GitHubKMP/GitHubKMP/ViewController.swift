@@ -9,7 +9,12 @@
 import UIKit
 import shared
 
-class ViewController: UIViewController {
+class ViewController: UIViewController, MembersView {
+    
+    lazy var dataRepository = MembersDataRepository(api: GithubApi())
+    
+    lazy var presenter: MembersPresenter = MembersPresenter(view: self, repository: self.dataRepository)
+
 
     @IBOutlet weak var platformLabel: UILabel!
     
@@ -19,6 +24,23 @@ class ViewController: UIViewController {
         
         platformLabel.text = Greeting().greeting()
         
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        presenter.onCreate()
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        presenter.onDestroy()
+    }
+
+    
+    var isUpdating: Bool = false
+    
+    func onUpdate(members: String) {
+        print(members)
     }
 
 
