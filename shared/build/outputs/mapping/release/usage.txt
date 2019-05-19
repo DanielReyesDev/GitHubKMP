@@ -6,6 +6,9 @@ com.skylabs.api.GithubApi$getMembers$$inlined$get$1
 com.skylabs.api.GithubApi$getMembers$1
 com.skylabs.api.UpdateProblem
 com.skylabs.githubkmp.BuildConfig
+com.skylabs.model.Member
+com.skylabs.model.Member$$serializer
+com.skylabs.model.Member$Companion
 com.skylabs.model.MembersDataRepository
 com.skylabs.model.MembersDataRepository$update$1
 com.skylabs.presentation.BaseView

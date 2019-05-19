@@ -8,7 +8,7 @@ class MembersDataRepository(private val api: GithubApi) : DataRepository {
 
     // tip: ctr + i and select all the required methods and properties from the base class DataRepository
 
-    override var members: String? = null
+    override var members: List<Member>? = null
 
     override var onRefreshListeners: List<() -> Unit> = emptyList()
 

@@ -1,8 +1,8 @@
 #import <Foundation/Foundation.h>
 
-@class SharedGreeting, SharedMembersDataRepository, SharedKotlinUnit, SharedGithubApi, SharedUpdateProblem, SharedKotlinThrowable, SharedKotlinArray, SharedCoroutinePresenter, SharedMembersPresenter;
+@class SharedGreeting, SharedMember, SharedMemberCompanion, SharedMember$serializer, SharedKotlinArray, SharedMembersDataRepository, SharedKotlinUnit, SharedGithubApi, SharedUpdateProblem, SharedKotlinThrowable, SharedCoroutinePresenter, SharedMembersPresenter, SharedKotlinx_serialization_runtime_nativeEnumDescriptor, SharedKotlinx_serialization_runtime_nativeSerialKind, SharedKotlinNothing, SharedKotlinx_serialization_runtime_nativeUpdateMode, SharedKotlinx_serialization_runtime_nativeSerialClassDescImpl, SharedKotlinEnum;
 
-@protocol SharedDataRepository, SharedBaseView, SharedKotlinx_coroutines_core_nativeCoroutineScope, SharedKotlinCoroutineContext, SharedMembersView, SharedKotlinIterator, SharedKotlinCoroutineContextElement, SharedKotlinCoroutineContextKey;
+@protocol SharedKotlinx_serialization_runtime_nativeKSerializer, SharedKotlinx_serialization_runtime_nativeGeneratedSerializer, SharedKotlinx_serialization_runtime_nativeSerializationStrategy, SharedKotlinx_serialization_runtime_nativeEncoder, SharedKotlinx_serialization_runtime_nativeSerialDescriptor, SharedKotlinx_serialization_runtime_nativeDeserializationStrategy, SharedKotlinx_serialization_runtime_nativeDecoder, SharedDataRepository, SharedBaseView, SharedKotlinx_coroutines_core_nativeCoroutineScope, SharedKotlinCoroutineContext, SharedMembersView, SharedKotlinIterator, SharedKotlinx_serialization_runtime_nativeCompositeEncoder, SharedKotlinx_serialization_runtime_nativeSerialContext, SharedKotlinAnnotation, SharedKotlinx_serialization_runtime_nativeCompositeDecoder, SharedKotlinCoroutineContextElement, SharedKotlinCoroutineContextKey, SharedKotlinKClass, SharedKotlinComparable, SharedKotlinKDeclarationContainer, SharedKotlinKAnnotatedElement, SharedKotlinKClassifier;
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -149,10 +149,69 @@ __attribute__((swift_name("Greeting")))
 - (NSString *)greeting __attribute__((swift_name("greeting()")));
 @end;
 
+__attribute__((objc_subclassing_restricted))
+__attribute__((swift_name("Member")))
+@interface SharedMember : KotlinBase
+- (instancetype)initWithId:(int32_t)id login:(NSString *)login avatarUrl:(NSString *)avatarUrl __attribute__((swift_name("init(id:login:avatarUrl:)"))) __attribute__((objc_designated_initializer));
+- (int32_t)component1 __attribute__((swift_name("component1()")));
+- (NSString *)component2 __attribute__((swift_name("component2()")));
+- (NSString *)component3 __attribute__((swift_name("component3()")));
+- (SharedMember *)doCopyId:(int32_t)id login:(NSString *)login avatarUrl:(NSString *)avatarUrl __attribute__((swift_name("doCopy(id:login:avatarUrl:)")));
+@property (readonly) int32_t id;
+@property (readonly) NSString *login;
+@property (readonly) NSString *avatarUrl;
+@end;
+
+__attribute__((objc_subclassing_restricted))
+__attribute__((swift_name("Member.Companion")))
+@interface SharedMemberCompanion : KotlinBase
++ (instancetype)alloc __attribute__((unavailable));
++ (instancetype)allocWithZone:(struct _NSZone *)zone __attribute__((unavailable));
++ (instancetype)companion __attribute__((swift_name("init()")));
+- (id<SharedKotlinx_serialization_runtime_nativeKSerializer>)serializer __attribute__((swift_name("serializer()")));
+@end;
+
+__attribute__((swift_name("Kotlinx_serialization_runtime_nativeSerializationStrategy")))
+@protocol SharedKotlinx_serialization_runtime_nativeSerializationStrategy
+@required
+- (void)serializeEncoder:(id<SharedKotlinx_serialization_runtime_nativeEncoder>)encoder obj:(id _Nullable)obj __attribute__((swift_name("serialize(encoder:obj:)")));
+@property (readonly) id<SharedKotlinx_serialization_runtime_nativeSerialDescriptor> descriptor;
+@end;
+
+__attribute__((swift_name("Kotlinx_serialization_runtime_nativeDeserializationStrategy")))
+@protocol SharedKotlinx_serialization_runtime_nativeDeserializationStrategy
+@required
+- (id _Nullable)deserializeDecoder:(id<SharedKotlinx_serialization_runtime_nativeDecoder>)decoder __attribute__((swift_name("deserialize(decoder:)")));
+- (id _Nullable)patchDecoder:(id<SharedKotlinx_serialization_runtime_nativeDecoder>)decoder old:(id _Nullable)old __attribute__((swift_name("patch(decoder:old:)")));
+@property (readonly) id<SharedKotlinx_serialization_runtime_nativeSerialDescriptor> descriptor;
+@end;
+
+__attribute__((swift_name("Kotlinx_serialization_runtime_nativeKSerializer")))
+@protocol SharedKotlinx_serialization_runtime_nativeKSerializer <SharedKotlinx_serialization_runtime_nativeSerializationStrategy, SharedKotlinx_serialization_runtime_nativeDeserializationStrategy>
+@required
+@end;
+
+__attribute__((swift_name("Kotlinx_serialization_runtime_nativeGeneratedSerializer")))
+@protocol SharedKotlinx_serialization_runtime_nativeGeneratedSerializer <SharedKotlinx_serialization_runtime_nativeKSerializer>
+@required
+- (SharedKotlinArray *)childSerializers __attribute__((swift_name("childSerializers()")));
+@end;
+
+__attribute__((objc_subclassing_restricted))
+__attribute__((swift_name("Member.$serializer")))
+@interface SharedMember$serializer : KotlinBase <SharedKotlinx_serialization_runtime_nativeGeneratedSerializer>
++ (instancetype)alloc __attribute__((unavailable));
++ (instancetype)allocWithZone:(struct _NSZone *)zone __attribute__((unavailable));
++ (instancetype)$serializer __attribute__((swift_name("init()")));
+- (SharedMember *)deserializeDecoder:(id<SharedKotlinx_serialization_runtime_nativeDecoder>)decoder __attribute__((swift_name("deserialize(decoder:)")));
+- (SharedMember *)patchDecoder:(id<SharedKotlinx_serialization_runtime_nativeDecoder>)decoder old:(SharedMember *)old __attribute__((swift_name("patch(decoder:old:)")));
+- (void)serializeEncoder:(id<SharedKotlinx_serialization_runtime_nativeEncoder>)encoder obj:(SharedMember *)obj __attribute__((swift_name("serialize(encoder:obj:)")));
+@end;
+
 __attribute__((swift_name("DataRepository")))
 @protocol SharedDataRepository
 @required
-@property (readonly) NSString * _Nullable members;
+@property (readonly) NSArray<SharedMember *> * _Nullable members;
 @property NSArray<SharedKotlinUnit *(^)(void)> *onRefreshListeners;
 @end;
 
@@ -160,7 +219,7 @@ __attribute__((objc_subclassing_restricted))
 __attribute__((swift_name("MembersDataRepository")))
 @interface SharedMembersDataRepository : KotlinBase <SharedDataRepository>
 - (instancetype)initWithApi:(SharedGithubApi *)api __attribute__((swift_name("init(api:)"))) __attribute__((objc_designated_initializer));
-@property NSString * _Nullable members;
+@property NSArray<SharedMember *> * _Nullable members;
 @end;
 
 __attribute__((swift_name("KotlinThrowable")))
@@ -222,7 +281,7 @@ __attribute__((swift_name("MembersPresenter")))
 __attribute__((swift_name("MembersView")))
 @protocol SharedMembersView <SharedBaseView>
 @required
-- (void)onUpdateMembers:(NSString *)members __attribute__((swift_name("onUpdate(members:)")));
+- (void)onUpdateMembers:(NSArray<SharedMember *> *)members __attribute__((swift_name("onUpdate(members:)")));
 @property BOOL isUpdating;
 @end;
 
@@ -230,14 +289,6 @@ __attribute__((objc_subclassing_restricted))
 __attribute__((swift_name("IosKt")))
 @interface SharedIosKt : KotlinBase
 + (NSString *)platformName __attribute__((swift_name("platformName()")));
-@end;
-
-__attribute__((objc_subclassing_restricted))
-__attribute__((swift_name("KotlinUnit")))
-@interface SharedKotlinUnit : KotlinBase
-+ (instancetype)alloc __attribute__((unavailable));
-+ (instancetype)allocWithZone:(struct _NSZone *)zone __attribute__((unavailable));
-+ (instancetype)unit __attribute__((swift_name("init()")));
 @end;
 
 __attribute__((objc_subclassing_restricted))
@@ -250,6 +301,77 @@ __attribute__((swift_name("KotlinArray")))
 - (id<SharedKotlinIterator>)iterator __attribute__((swift_name("iterator()")));
 - (void)setIndex:(int32_t)index value:(id _Nullable)value __attribute__((swift_name("set(index:value:)")));
 @property (readonly) int32_t size;
+@end;
+
+__attribute__((swift_name("Kotlinx_serialization_runtime_nativeEncoder")))
+@protocol SharedKotlinx_serialization_runtime_nativeEncoder
+@required
+- (id<SharedKotlinx_serialization_runtime_nativeCompositeEncoder>)beginCollectionDesc:(id<SharedKotlinx_serialization_runtime_nativeSerialDescriptor>)desc collectionSize:(int32_t)collectionSize typeParams:(SharedKotlinArray *)typeParams __attribute__((swift_name("beginCollection(desc:collectionSize:typeParams:)")));
+- (id<SharedKotlinx_serialization_runtime_nativeCompositeEncoder>)beginStructureDesc:(id<SharedKotlinx_serialization_runtime_nativeSerialDescriptor>)desc typeParams:(SharedKotlinArray *)typeParams __attribute__((swift_name("beginStructure(desc:typeParams:)")));
+- (void)encodeBooleanValue:(BOOL)value __attribute__((swift_name("encodeBoolean(value:)")));
+- (void)encodeByteValue:(int8_t)value __attribute__((swift_name("encodeByte(value:)")));
+- (void)encodeCharValue:(unichar)value __attribute__((swift_name("encodeChar(value:)")));
+- (void)encodeDoubleValue:(double)value __attribute__((swift_name("encodeDouble(value:)")));
+- (void)encodeEnumEnumDescription:(SharedKotlinx_serialization_runtime_nativeEnumDescriptor *)enumDescription ordinal:(int32_t)ordinal __attribute__((swift_name("encodeEnum(enumDescription:ordinal:)")));
+- (void)encodeFloatValue:(float)value __attribute__((swift_name("encodeFloat(value:)")));
+- (void)encodeIntValue:(int32_t)value __attribute__((swift_name("encodeInt(value:)")));
+- (void)encodeLongValue:(int64_t)value __attribute__((swift_name("encodeLong(value:)")));
+- (void)encodeNotNullMark __attribute__((swift_name("encodeNotNullMark()")));
+- (void)encodeNull __attribute__((swift_name("encodeNull()")));
+- (void)encodeNullableSerializableValueSerializer:(id<SharedKotlinx_serialization_runtime_nativeSerializationStrategy>)serializer value:(id _Nullable)value __attribute__((swift_name("encodeNullableSerializableValue(serializer:value:)")));
+- (void)encodeSerializableValueSerializer:(id<SharedKotlinx_serialization_runtime_nativeSerializationStrategy>)serializer value:(id _Nullable)value __attribute__((swift_name("encodeSerializableValue(serializer:value:)")));
+- (void)encodeShortValue:(int16_t)value __attribute__((swift_name("encodeShort(value:)")));
+- (void)encodeStringValue:(NSString *)value __attribute__((swift_name("encodeString(value:)")));
+- (void)encodeUnit __attribute__((swift_name("encodeUnit()")));
+@property (readonly) id<SharedKotlinx_serialization_runtime_nativeSerialContext> context;
+@end;
+
+__attribute__((swift_name("Kotlinx_serialization_runtime_nativeSerialDescriptor")))
+@protocol SharedKotlinx_serialization_runtime_nativeSerialDescriptor
+@required
+- (NSArray<id<SharedKotlinAnnotation>> *)getElementAnnotationsIndex:(int32_t)index __attribute__((swift_name("getElementAnnotations(index:)")));
+- (id<SharedKotlinx_serialization_runtime_nativeSerialDescriptor>)getElementDescriptorIndex:(int32_t)index __attribute__((swift_name("getElementDescriptor(index:)")));
+- (int32_t)getElementIndexName:(NSString *)name __attribute__((swift_name("getElementIndex(name:)")));
+- (NSString *)getElementNameIndex:(int32_t)index __attribute__((swift_name("getElementName(index:)")));
+- (NSArray<id<SharedKotlinAnnotation>> *)getEntityAnnotations __attribute__((swift_name("getEntityAnnotations()")));
+- (BOOL)isElementOptionalIndex:(int32_t)index __attribute__((swift_name("isElementOptional(index:)")));
+@property (readonly) int32_t elementsCount;
+@property (readonly) BOOL isNullable;
+@property (readonly) SharedKotlinx_serialization_runtime_nativeSerialKind *kind;
+@property (readonly) NSString *name;
+@end;
+
+__attribute__((swift_name("Kotlinx_serialization_runtime_nativeDecoder")))
+@protocol SharedKotlinx_serialization_runtime_nativeDecoder
+@required
+- (id<SharedKotlinx_serialization_runtime_nativeCompositeDecoder>)beginStructureDesc:(id<SharedKotlinx_serialization_runtime_nativeSerialDescriptor>)desc typeParams:(SharedKotlinArray *)typeParams __attribute__((swift_name("beginStructure(desc:typeParams:)")));
+- (BOOL)decodeBoolean __attribute__((swift_name("decodeBoolean()")));
+- (int8_t)decodeByte __attribute__((swift_name("decodeByte()")));
+- (unichar)decodeChar __attribute__((swift_name("decodeChar()")));
+- (double)decodeDouble __attribute__((swift_name("decodeDouble()")));
+- (int32_t)decodeEnumEnumDescription:(SharedKotlinx_serialization_runtime_nativeEnumDescriptor *)enumDescription __attribute__((swift_name("decodeEnum(enumDescription:)")));
+- (float)decodeFloat __attribute__((swift_name("decodeFloat()")));
+- (int32_t)decodeInt __attribute__((swift_name("decodeInt()")));
+- (int64_t)decodeLong __attribute__((swift_name("decodeLong()")));
+- (BOOL)decodeNotNullMark __attribute__((swift_name("decodeNotNullMark()")));
+- (SharedKotlinNothing * _Nullable)decodeNull __attribute__((swift_name("decodeNull()")));
+- (id _Nullable)decodeNullableSerializableValueDeserializer:(id<SharedKotlinx_serialization_runtime_nativeDeserializationStrategy>)deserializer __attribute__((swift_name("decodeNullableSerializableValue(deserializer:)")));
+- (id _Nullable)decodeSerializableValueDeserializer:(id<SharedKotlinx_serialization_runtime_nativeDeserializationStrategy>)deserializer __attribute__((swift_name("decodeSerializableValue(deserializer:)")));
+- (int16_t)decodeShort __attribute__((swift_name("decodeShort()")));
+- (NSString *)decodeString __attribute__((swift_name("decodeString()")));
+- (void)decodeUnit __attribute__((swift_name("decodeUnit()")));
+- (id _Nullable)updateNullableSerializableValueDeserializer:(id<SharedKotlinx_serialization_runtime_nativeDeserializationStrategy>)deserializer old:(id _Nullable)old __attribute__((swift_name("updateNullableSerializableValue(deserializer:old:)")));
+- (id _Nullable)updateSerializableValueDeserializer:(id<SharedKotlinx_serialization_runtime_nativeDeserializationStrategy>)deserializer old:(id _Nullable)old __attribute__((swift_name("updateSerializableValue(deserializer:old:)")));
+@property (readonly) id<SharedKotlinx_serialization_runtime_nativeSerialContext> context;
+@property (readonly) SharedKotlinx_serialization_runtime_nativeUpdateMode *updateMode;
+@end;
+
+__attribute__((objc_subclassing_restricted))
+__attribute__((swift_name("KotlinUnit")))
+@interface SharedKotlinUnit : KotlinBase
++ (instancetype)alloc __attribute__((unavailable));
++ (instancetype)allocWithZone:(struct _NSZone *)zone __attribute__((unavailable));
++ (instancetype)unit __attribute__((swift_name("init()")));
 @end;
 
 __attribute__((swift_name("KotlinCoroutineContext")))
@@ -268,6 +390,113 @@ __attribute__((swift_name("KotlinIterator")))
 - (id _Nullable)next __attribute__((swift_name("next()")));
 @end;
 
+__attribute__((swift_name("Kotlinx_serialization_runtime_nativeCompositeEncoder")))
+@protocol SharedKotlinx_serialization_runtime_nativeCompositeEncoder
+@required
+- (void)encodeBooleanElementDesc:(id<SharedKotlinx_serialization_runtime_nativeSerialDescriptor>)desc index:(int32_t)index value:(BOOL)value __attribute__((swift_name("encodeBooleanElement(desc:index:value:)")));
+- (void)encodeByteElementDesc:(id<SharedKotlinx_serialization_runtime_nativeSerialDescriptor>)desc index:(int32_t)index value:(int8_t)value __attribute__((swift_name("encodeByteElement(desc:index:value:)")));
+- (void)encodeCharElementDesc:(id<SharedKotlinx_serialization_runtime_nativeSerialDescriptor>)desc index:(int32_t)index value:(unichar)value __attribute__((swift_name("encodeCharElement(desc:index:value:)")));
+- (void)encodeDoubleElementDesc:(id<SharedKotlinx_serialization_runtime_nativeSerialDescriptor>)desc index:(int32_t)index value:(double)value __attribute__((swift_name("encodeDoubleElement(desc:index:value:)")));
+- (void)encodeFloatElementDesc:(id<SharedKotlinx_serialization_runtime_nativeSerialDescriptor>)desc index:(int32_t)index value:(float)value __attribute__((swift_name("encodeFloatElement(desc:index:value:)")));
+- (void)encodeIntElementDesc:(id<SharedKotlinx_serialization_runtime_nativeSerialDescriptor>)desc index:(int32_t)index value:(int32_t)value __attribute__((swift_name("encodeIntElement(desc:index:value:)")));
+- (void)encodeLongElementDesc:(id<SharedKotlinx_serialization_runtime_nativeSerialDescriptor>)desc index:(int32_t)index value:(int64_t)value __attribute__((swift_name("encodeLongElement(desc:index:value:)")));
+- (void)encodeNonSerializableElementDesc:(id<SharedKotlinx_serialization_runtime_nativeSerialDescriptor>)desc index:(int32_t)index value:(id)value __attribute__((swift_name("encodeNonSerializableElement(desc:index:value:)")));
+- (void)encodeNullableSerializableElementDesc:(id<SharedKotlinx_serialization_runtime_nativeSerialDescriptor>)desc index:(int32_t)index serializer:(id<SharedKotlinx_serialization_runtime_nativeSerializationStrategy>)serializer value:(id _Nullable)value __attribute__((swift_name("encodeNullableSerializableElement(desc:index:serializer:value:)")));
+- (void)encodeSerializableElementDesc:(id<SharedKotlinx_serialization_runtime_nativeSerialDescriptor>)desc index:(int32_t)index serializer:(id<SharedKotlinx_serialization_runtime_nativeSerializationStrategy>)serializer value:(id _Nullable)value __attribute__((swift_name("encodeSerializableElement(desc:index:serializer:value:)")));
+- (void)encodeShortElementDesc:(id<SharedKotlinx_serialization_runtime_nativeSerialDescriptor>)desc index:(int32_t)index value:(int16_t)value __attribute__((swift_name("encodeShortElement(desc:index:value:)")));
+- (void)encodeStringElementDesc:(id<SharedKotlinx_serialization_runtime_nativeSerialDescriptor>)desc index:(int32_t)index value:(NSString *)value __attribute__((swift_name("encodeStringElement(desc:index:value:)")));
+- (void)encodeUnitElementDesc:(id<SharedKotlinx_serialization_runtime_nativeSerialDescriptor>)desc index:(int32_t)index __attribute__((swift_name("encodeUnitElement(desc:index:)")));
+- (void)endStructureDesc:(id<SharedKotlinx_serialization_runtime_nativeSerialDescriptor>)desc __attribute__((swift_name("endStructure(desc:)")));
+- (BOOL)shouldEncodeElementDefaultDesc:(id<SharedKotlinx_serialization_runtime_nativeSerialDescriptor>)desc index:(int32_t)index __attribute__((swift_name("shouldEncodeElementDefault(desc:index:)")));
+@property (readonly) id<SharedKotlinx_serialization_runtime_nativeSerialContext> context;
+@end;
+
+__attribute__((swift_name("Kotlinx_serialization_runtime_nativeSerialClassDescImpl")))
+@interface SharedKotlinx_serialization_runtime_nativeSerialClassDescImpl : KotlinBase <SharedKotlinx_serialization_runtime_nativeSerialDescriptor>
+- (instancetype)initWithName:(NSString *)name generatedSerializer:(id<SharedKotlinx_serialization_runtime_nativeGeneratedSerializer> _Nullable)generatedSerializer __attribute__((swift_name("init(name:generatedSerializer:)"))) __attribute__((objc_designated_initializer));
+- (void)addElementName:(NSString *)name isOptional:(BOOL)isOptional __attribute__((swift_name("addElement(name:isOptional:)")));
+- (void)pushAnnotationA:(id<SharedKotlinAnnotation>)a __attribute__((swift_name("pushAnnotation(a:)")));
+- (void)pushClassAnnotationA:(id<SharedKotlinAnnotation>)a __attribute__((swift_name("pushClassAnnotation(a:)")));
+- (void)pushDescriptorDesc:(id<SharedKotlinx_serialization_runtime_nativeSerialDescriptor>)desc __attribute__((swift_name("pushDescriptor(desc:)")));
+@end;
+
+__attribute__((swift_name("Kotlinx_serialization_runtime_nativeEnumDescriptor")))
+@interface SharedKotlinx_serialization_runtime_nativeEnumDescriptor : SharedKotlinx_serialization_runtime_nativeSerialClassDescImpl
+- (instancetype)initWithName:(NSString *)name choices:(SharedKotlinArray *)choices __attribute__((swift_name("init(name:choices:)"))) __attribute__((objc_designated_initializer));
+- (instancetype)initWithName:(NSString *)name generatedSerializer:(id<SharedKotlinx_serialization_runtime_nativeGeneratedSerializer> _Nullable)generatedSerializer __attribute__((swift_name("init(name:generatedSerializer:)"))) __attribute__((objc_designated_initializer)) __attribute__((unavailable));
+@end;
+
+__attribute__((swift_name("Kotlinx_serialization_runtime_nativeSerialContext")))
+@protocol SharedKotlinx_serialization_runtime_nativeSerialContext
+@required
+- (id<SharedKotlinx_serialization_runtime_nativeKSerializer> _Nullable)getKclass:(id<SharedKotlinKClass>)kclass __attribute__((swift_name("get(kclass:)")));
+- (id<SharedKotlinx_serialization_runtime_nativeKSerializer> _Nullable)getByValueValue:(id)value __attribute__((swift_name("getByValue(value:)")));
+@end;
+
+__attribute__((swift_name("KotlinAnnotation")))
+@protocol SharedKotlinAnnotation
+@required
+@end;
+
+__attribute__((swift_name("Kotlinx_serialization_runtime_nativeSerialKind")))
+@interface SharedKotlinx_serialization_runtime_nativeSerialKind : KotlinBase
+@end;
+
+__attribute__((swift_name("Kotlinx_serialization_runtime_nativeCompositeDecoder")))
+@protocol SharedKotlinx_serialization_runtime_nativeCompositeDecoder
+@required
+- (BOOL)decodeBooleanElementDesc:(id<SharedKotlinx_serialization_runtime_nativeSerialDescriptor>)desc index:(int32_t)index __attribute__((swift_name("decodeBooleanElement(desc:index:)")));
+- (int8_t)decodeByteElementDesc:(id<SharedKotlinx_serialization_runtime_nativeSerialDescriptor>)desc index:(int32_t)index __attribute__((swift_name("decodeByteElement(desc:index:)")));
+- (unichar)decodeCharElementDesc:(id<SharedKotlinx_serialization_runtime_nativeSerialDescriptor>)desc index:(int32_t)index __attribute__((swift_name("decodeCharElement(desc:index:)")));
+- (int32_t)decodeCollectionSizeDesc:(id<SharedKotlinx_serialization_runtime_nativeSerialDescriptor>)desc __attribute__((swift_name("decodeCollectionSize(desc:)")));
+- (double)decodeDoubleElementDesc:(id<SharedKotlinx_serialization_runtime_nativeSerialDescriptor>)desc index:(int32_t)index __attribute__((swift_name("decodeDoubleElement(desc:index:)")));
+- (int32_t)decodeElementIndexDesc:(id<SharedKotlinx_serialization_runtime_nativeSerialDescriptor>)desc __attribute__((swift_name("decodeElementIndex(desc:)")));
+- (float)decodeFloatElementDesc:(id<SharedKotlinx_serialization_runtime_nativeSerialDescriptor>)desc index:(int32_t)index __attribute__((swift_name("decodeFloatElement(desc:index:)")));
+- (int32_t)decodeIntElementDesc:(id<SharedKotlinx_serialization_runtime_nativeSerialDescriptor>)desc index:(int32_t)index __attribute__((swift_name("decodeIntElement(desc:index:)")));
+- (int64_t)decodeLongElementDesc:(id<SharedKotlinx_serialization_runtime_nativeSerialDescriptor>)desc index:(int32_t)index __attribute__((swift_name("decodeLongElement(desc:index:)")));
+- (id _Nullable)decodeNullableSerializableElementDesc:(id<SharedKotlinx_serialization_runtime_nativeSerialDescriptor>)desc index:(int32_t)index deserializer:(id<SharedKotlinx_serialization_runtime_nativeDeserializationStrategy>)deserializer __attribute__((swift_name("decodeNullableSerializableElement(desc:index:deserializer:)")));
+- (id _Nullable)decodeSerializableElementDesc:(id<SharedKotlinx_serialization_runtime_nativeSerialDescriptor>)desc index:(int32_t)index deserializer:(id<SharedKotlinx_serialization_runtime_nativeDeserializationStrategy>)deserializer __attribute__((swift_name("decodeSerializableElement(desc:index:deserializer:)")));
+- (int16_t)decodeShortElementDesc:(id<SharedKotlinx_serialization_runtime_nativeSerialDescriptor>)desc index:(int32_t)index __attribute__((swift_name("decodeShortElement(desc:index:)")));
+- (NSString *)decodeStringElementDesc:(id<SharedKotlinx_serialization_runtime_nativeSerialDescriptor>)desc index:(int32_t)index __attribute__((swift_name("decodeStringElement(desc:index:)")));
+- (void)decodeUnitElementDesc:(id<SharedKotlinx_serialization_runtime_nativeSerialDescriptor>)desc index:(int32_t)index __attribute__((swift_name("decodeUnitElement(desc:index:)")));
+- (void)endStructureDesc:(id<SharedKotlinx_serialization_runtime_nativeSerialDescriptor>)desc __attribute__((swift_name("endStructure(desc:)")));
+- (id _Nullable)updateNullableSerializableElementDesc:(id<SharedKotlinx_serialization_runtime_nativeSerialDescriptor>)desc index:(int32_t)index deserializer:(id<SharedKotlinx_serialization_runtime_nativeDeserializationStrategy>)deserializer old:(id _Nullable)old __attribute__((swift_name("updateNullableSerializableElement(desc:index:deserializer:old:)")));
+- (id _Nullable)updateSerializableElementDesc:(id<SharedKotlinx_serialization_runtime_nativeSerialDescriptor>)desc index:(int32_t)index deserializer:(id<SharedKotlinx_serialization_runtime_nativeDeserializationStrategy>)deserializer old:(id _Nullable)old __attribute__((swift_name("updateSerializableElement(desc:index:deserializer:old:)")));
+@property (readonly) id<SharedKotlinx_serialization_runtime_nativeSerialContext> context;
+@property (readonly) SharedKotlinx_serialization_runtime_nativeUpdateMode *updateMode;
+@end;
+
+__attribute__((objc_subclassing_restricted))
+__attribute__((swift_name("KotlinNothing")))
+@interface SharedKotlinNothing : KotlinBase
+@end;
+
+__attribute__((swift_name("KotlinComparable")))
+@protocol SharedKotlinComparable
+@required
+- (int32_t)compareToOther:(id _Nullable)other __attribute__((swift_name("compareTo(other:)")));
+@end;
+
+__attribute__((swift_name("KotlinEnum")))
+@interface SharedKotlinEnum : KotlinBase <SharedKotlinComparable>
+- (instancetype)initWithName:(NSString *)name ordinal:(int32_t)ordinal __attribute__((swift_name("init(name:ordinal:)"))) __attribute__((objc_designated_initializer));
+- (int32_t)compareToOther:(SharedKotlinEnum *)other __attribute__((swift_name("compareTo(other:)")));
+@property (readonly) NSString *name;
+@property (readonly) int32_t ordinal;
+@end;
+
+__attribute__((objc_subclassing_restricted))
+__attribute__((swift_name("Kotlinx_serialization_runtime_nativeUpdateMode")))
+@interface SharedKotlinx_serialization_runtime_nativeUpdateMode : SharedKotlinEnum
++ (instancetype)alloc __attribute__((unavailable));
++ (instancetype)allocWithZone:(struct _NSZone *)zone __attribute__((unavailable));
+@property (class, readonly) SharedKotlinx_serialization_runtime_nativeUpdateMode *banned;
+@property (class, readonly) SharedKotlinx_serialization_runtime_nativeUpdateMode *overwrite;
+@property (class, readonly) SharedKotlinx_serialization_runtime_nativeUpdateMode *update;
+- (instancetype)initWithName:(NSString *)name ordinal:(int32_t)ordinal __attribute__((swift_name("init(name:ordinal:)"))) __attribute__((objc_designated_initializer)) __attribute__((unavailable));
+- (int32_t)compareToOther:(SharedKotlinx_serialization_runtime_nativeUpdateMode *)other __attribute__((swift_name("compareTo(other:)")));
+@end;
+
 __attribute__((swift_name("KotlinCoroutineContextElement")))
 @protocol SharedKotlinCoroutineContextElement <SharedKotlinCoroutineContext>
 @required
@@ -277,6 +506,29 @@ __attribute__((swift_name("KotlinCoroutineContextElement")))
 __attribute__((swift_name("KotlinCoroutineContextKey")))
 @protocol SharedKotlinCoroutineContextKey
 @required
+@end;
+
+__attribute__((swift_name("KotlinKDeclarationContainer")))
+@protocol SharedKotlinKDeclarationContainer
+@required
+@end;
+
+__attribute__((swift_name("KotlinKAnnotatedElement")))
+@protocol SharedKotlinKAnnotatedElement
+@required
+@end;
+
+__attribute__((swift_name("KotlinKClassifier")))
+@protocol SharedKotlinKClassifier
+@required
+@end;
+
+__attribute__((swift_name("KotlinKClass")))
+@protocol SharedKotlinKClass <SharedKotlinKDeclarationContainer, SharedKotlinKAnnotatedElement, SharedKotlinKClassifier>
+@required
+- (BOOL)isInstanceValue:(id _Nullable)value __attribute__((swift_name("isInstance(value:)")));
+@property (readonly) NSString * _Nullable qualifiedName;
+@property (readonly) NSString * _Nullable simpleName;
 @end;
 
 NS_ASSUME_NONNULL_END
