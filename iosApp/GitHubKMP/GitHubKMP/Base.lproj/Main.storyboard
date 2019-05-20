@@ -18,8 +18,12 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wSS-PJ-NDP">
-                                <rect key="frame" x="186" y="437.5" width="42" height="21"/>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="fNd-jT-9rx">
+                                <rect key="frame" x="0.0" y="44" width="414" height="797"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </tableView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wSS-PJ-NDP">
+                                <rect key="frame" x="0.0" y="841" width="414" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -27,17 +31,24 @@
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="wSS-PJ-NDP" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="LNN-K0-Ujl"/>
-                            <constraint firstItem="wSS-PJ-NDP" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="UHc-xy-RIO"/>
+                            <constraint firstItem="fNd-jT-9rx" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="2Od-TE-Vrh"/>
+                            <constraint firstItem="wSS-PJ-NDP" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="5nv-lF-mrQ"/>
+                            <constraint firstItem="wSS-PJ-NDP" firstAttribute="top" secondItem="fNd-jT-9rx" secondAttribute="bottom" id="8aD-8m-V1K"/>
+                            <constraint firstItem="fNd-jT-9rx" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="CAJ-n9-EFh"/>
+                            <constraint firstItem="wSS-PJ-NDP" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="FIy-LN-aoz"/>
+                            <constraint firstItem="wSS-PJ-NDP" firstAttribute="bottom" secondItem="6Tk-OE-BBY" secondAttribute="bottom" id="aH0-eO-vg8"/>
+                            <constraint firstItem="fNd-jT-9rx" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="w1w-hK-WB2"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <connections>
                         <outlet property="platformLabel" destination="wSS-PJ-NDP" id="jRp-gP-uqJ"/>
+                        <outlet property="tableView" destination="fNd-jT-9rx" id="wGh-9K-BY8"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
+            <point key="canvasLocation" x="137.68115942028987" y="138.61607142857142"/>
         </scene>
     </scenes>
 </document>
