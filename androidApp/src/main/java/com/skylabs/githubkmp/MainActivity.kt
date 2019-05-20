@@ -3,22 +3,29 @@ package com.skylabs.githubkmp
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.skylabs.Greeting
 import com.skylabs.api.UpdateProblem
+import com.skylabs.model.Member
 import com.skylabs.presentation.MembersPresenter
 import com.skylabs.presentation.MembersView
 import kotlinx.android.synthetic.main.activity_main.*
+
 
 class MainActivity : AppCompatActivity(), MembersView {
 
     private val repository by lazy { (application as GitHubKMPApplication).dataRepository }
     private val presenter by lazy { MembersPresenter(this, repository = repository) }
 
+    private lateinit var adapter: MemberAdapter
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
         greeting.text = Greeting().greeting()
+
+        setupRecyclerView()
 
         presenter.onCreate()
     }
@@ -30,9 +37,10 @@ class MainActivity : AppCompatActivity(), MembersView {
 
     override var isUpdating = false
 
-    override fun onUpdate(members: String) {
+    override fun onUpdate(members: List<Member>) {
+        adapter.members = members
         runOnUiThread{
-            Toast.makeText(this, members, Toast.LENGTH_SHORT).show()
+            adapter.notifyDataSetChanged()
         }
     }
 
@@ -44,5 +52,11 @@ class MainActivity : AppCompatActivity(), MembersView {
         runOnUiThread{
             Toast.makeText(this, errorMessage, Toast.LENGTH_SHORT).show()
         }
+    }
+
+    private fun setupRecyclerView() {
+        membersRecyclerView.layoutManager = LinearLayoutManager(this)
+        adapter = MemberAdapter(listOf())
+        membersRecyclerView.adapter = adapter
     }
 }
